@@ -99,7 +99,7 @@ function updateHistoryDisplay() {
         
         const feedback = document.createElement('div');
         feedback.className = 'guess-feedback';
-        feedback.textContent = `✅${item.result.correctPosition} ❓${item.result.correctColor} ❌${item.result.incorrect}`;
+        feedback.textContent = `✅\u2009${item.result.correctPosition}    ❓\u2009${item.result.correctColor}    ❌\u2009${item.result.incorrect}`;
         
         historyItem.appendChild(guessColors);
         historyItem.appendChild(feedback);
@@ -133,18 +133,18 @@ document.getElementById('submitGuess').addEventListener('click', () => {
     remainingGuesses--;
     document.getElementById('remainingGuesses').textContent = `Remaining Guesses: ${remainingGuesses}`;
     
-    const feedback = `✅ ${result.correctPosition} | ❓ ${result.correctColor} | ❌ ${result.incorrect}`;
+    const feedback = `✅\u2009${result.correctPosition}    ❓\u2009${result.correctColor}    ❌\u2009${result.incorrect}`;
     document.getElementById('feedback').textContent = feedback;
     
     addToHistory(currentGuess, result);
     
     if (result.correctPosition === 3) {
         document.getElementById('gameOver').classList.remove('hidden');
-        document.getElementById('gameOver').querySelector('h2').textContent = 'You Won! 🎉';
+        document.getElementById('gameOver').querySelector('h2').innerHTML = '<div class="game-over-text">You Won! 🎉</div>';
     } else if (remainingGuesses === 0) {
         document.getElementById('gameOver').classList.remove('hidden');
         const gameOverMessage = document.getElementById('gameOver').querySelector('h2');
-        gameOverMessage.innerHTML = 'Game Over! 😢<br><br>Correct combination:';
+        gameOverMessage.innerHTML = '<div class="game-over-text">Game Over! 😢</div><div class="game-over-text">It was:</div>';
         
         // Add the correct combination display
         const correctCombo = document.createElement('div');

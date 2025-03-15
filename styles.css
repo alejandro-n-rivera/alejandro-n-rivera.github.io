@@ -65,6 +65,7 @@ header h1 {
 .guess-history-item {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     margin-bottom: 10px;
     padding: 8px;
@@ -155,6 +156,10 @@ header h1 {
 #feedback {
     margin: 20px 0;
     font-size: 1.2rem;
+    min-height: 1.2em;  /* This will reserve the space even when empty */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hidden {
@@ -163,14 +168,29 @@ header h1 {
 
 #gameOver {
     position: fixed;
-    top: 50%;
+    top: 40%;  /* For desktop layout */
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 20px;
+    padding: 30px;  /* Increase overall padding */
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 80%;  /* Set a maximum width */
+    max-width: 300px;  /* Limit how wide it can get */
+}
+
+#gameOver h2 {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;  /* Add space after the header */
+}
+
+.game-over-text {
+    white-space: nowrap;  /* Prevent text wrapping */
+    font-size: min(5vw, 24px);  /* Responsive font size with a maximum */
+    line-height: 1.5;  /* Add some vertical spacing between lines */
+    margin-bottom: 10px;  /* Add space between text lines */
 }
 
 #playAgain {
@@ -181,49 +201,79 @@ header h1 {
     color: white;
     border: none;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 25px;  /* Increase space before the button */
 }
 
 /* Media query for narrow screens */
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
     .game-layout {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     #guessArea {
-        position: relative;
-        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: fit-content;  /* Let it take natural width */
     }
 
     .history-pane {
         position: relative;
-        right: auto;
-        top: auto;
         width: 90%;
         max-width: 300px;
-        margin: 20px auto;
-        order: 2;
+        right: auto;
+        top: auto;
+        margin: 30px auto 0;
     }
 
-    #feedback, #remainingGuesses {
-        position: relative;
+    .color-choices {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .guess-slots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #gameOver {
+        top: 35%;  /* Adjust for mobile layout */
     }
 }
 
 /* Very narrow screens */
 @media (max-width: 500px) {
-    .game-container {
-        padding: 0 10px;
-    }
-
     .history-pane {
         width: 100%;
-        margin: 10px 0;
+        margin: 20px 0;
     }
+}
+
+.guess-colors {
+    display: flex;
+    gap: 5px;
+}
+
+.guess-feedback {
+    margin-left: 10px;
 } 
