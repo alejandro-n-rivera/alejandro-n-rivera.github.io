@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Guessing Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>🐙</h1>
+    </header>
+
+    <div class="game-container">
+        <div class="game-layout">
+            <div class="history-pane">
+                <h3>Previous Guesses</h3>
+                <div id="guessHistory"></div>
+            </div>
+            
+            <div id="guessArea">
+                <div class="guess-slots">
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                </div>
+                <button id="submitGuess" disabled>Submit Guess</button>
+                <div id="feedback"></div>
+                <div id="remainingGuesses">Remaining Guesses: 5</div>
+            </div>
+        </div>
+
+        <div class="color-choices">
+            <button class="color-btn" data-color="green">🟢</button>
+            <button class="color-btn" data-color="red">🔴</button>
+            <button class="color-btn" data-color="yellow">🟡</button>
+            <button class="color-btn" data-color="blue">🔵</button>
+        </div>
+    </div>
+
+    <div id="gameOver" class="hidden">
+        <h2></h2>
+        <button id="playAgain">Play Again</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,217 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+header h1 {
+    font-size: 4rem;
+    margin: 20px 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+}
+
+.game-layout {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+.history-pane {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.history-pane::-webkit-scrollbar {
+    display: none;
+}
+
+.history-pane h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.guess-history-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.guess-history-item:last-child {
+    border-bottom: none;
+}
+
+.guess-slots {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.slot {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+    user-select: none;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE/Edge */
+}
+
+.slot:hover:not(:empty) {
+    transform: scale(0.9);
+}
+
+.color-choices {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.color-btn {
+    font-size: 2.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.color-btn:hover {
+    transform: scale(1.1);
+}
+
+#guessArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+}
+
+#submitGuess {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+#submitGuess:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#feedback {
+    margin: 20px 0;
+    font-size: 1.2rem;
+}
+
+.hidden {
+    display: none;
+}
+
+#gameOver {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+#playAgain {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Reorganize layout on smaller screens */
+@media (max-width: 768px) {
+    .game-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .history-pane {
+        order: 2;  /* Move history pane after guessArea */
+        width: 100%;
+        max-width: 300px;
+        max-height: 200px;  /* Smaller height on mobile */
+        margin-top: 10px;
+    }
+
+    #guessArea {
+        order: 1;
+    }
+
+    #remainingGuesses {
+        order: 3;  /* Move remaining guesses text to bottom */
+    }
+}
+
+/* Adjust game container max-width based on screen size */
+@media (max-width: 500px) {
+    .game-container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+} 
