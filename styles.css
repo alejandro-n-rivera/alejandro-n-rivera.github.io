@@ -106,7 +106,7 @@ header h1 {
 .color-choices {
     display: flex;
     gap: 15px;
-    margin-top: 20px;
+    margin-bottom: 15px;  /* Add margin below color buttons */
     width: 100%;
     justify-content: center;
 }
@@ -146,6 +146,7 @@ header h1 {
     border: none;
     border-radius: 5px;
     margin: 0 auto;
+    margin-bottom: 20px;  /* Add margin below submit button */
 }
 
 #submitGuess:disabled {
