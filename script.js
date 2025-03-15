@@ -144,7 +144,7 @@ document.getElementById('submitGuess').addEventListener('click', () => {
     } else if (remainingGuesses === 0) {
         document.getElementById('gameOver').classList.remove('hidden');
         const gameOverMessage = document.getElementById('gameOver').querySelector('h2');
-        gameOverMessage.textContent = 'Game Over! 😢\n\nCorrect combination:';
+        gameOverMessage.innerHTML = 'Game Over! 😢<br><br>Correct combination:';
         
         // Add the correct combination display
         const correctCombo = document.createElement('div');

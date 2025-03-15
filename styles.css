@@ -33,6 +33,7 @@ header h1 {
     justify-content: center;
     width: 100%;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .history-pane {
@@ -183,35 +184,46 @@ header h1 {
     margin-top: 10px;
 }
 
-/* Reorganize layout on smaller screens */
+/* Media query for narrow screens */
 @media (max-width: 768px) {
     .game-layout {
+        display: flex;
         flex-direction: column;
         align-items: center;
         gap: 20px;
     }
 
-    .history-pane {
-        order: 2;  /* Move history pane after guessArea */
-        width: 100%;
-        max-width: 300px;
-        max-height: 200px;  /* Smaller height on mobile */
-        margin-top: 10px;
-    }
-
     #guessArea {
-        order: 1;
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    #remainingGuesses {
-        order: 3;  /* Move remaining guesses text to bottom */
+    .history-pane {
+        position: relative;
+        right: auto;
+        top: auto;
+        width: 90%;
+        max-width: 300px;
+        margin: 20px auto;
+        order: 2;
+    }
+
+    #feedback, #remainingGuesses {
+        position: relative;
     }
 }
 
-/* Adjust game container max-width based on screen size */
+/* Very narrow screens */
 @media (max-width: 500px) {
     .game-container {
-        max-width: 100%;
         padding: 0 10px;
+    }
+
+    .history-pane {
+        width: 100%;
+        margin: 10px 0;
     }
 } 
