@@ -110,21 +110,19 @@ function updateHistoryDisplay() {
 // Event Listeners
 document.querySelectorAll('.color-btn').forEach(button => {
     button.addEventListener('click', () => {
-        if (currentGuess.length < 3) {
-            const color = button.dataset.color;
-            // Check if color is already used in current guess
-            const existingIndex = currentGuess.indexOf(color);
-            if (existingIndex === -1) {
-                // New color
-                currentGuess.push(color);
-                document.querySelectorAll('.slot')[currentGuess.length - 1].textContent = emojiMap[color];
-            } else {
-                // Remove the existing color (undo)
-                currentGuess.splice(existingIndex, 1);
-                updateSlotDisplay();
-            }
-            document.getElementById('submitGuess').disabled = currentGuess.length !== 3;
+        const color = button.dataset.color;
+        const existingIndex = currentGuess.indexOf(color);
+        
+        if (existingIndex !== -1) {
+            // Remove the existing color (undo)
+            currentGuess.splice(existingIndex, 1);
+            updateSlotDisplay();
+        } else if (currentGuess.length < 3) {
+            // Add new color only if there's room
+            currentGuess.push(color);
+            document.querySelectorAll('.slot')[currentGuess.length - 1].textContent = emojiMap[color];
         }
+        document.getElementById('submitGuess').disabled = currentGuess.length !== 3;
     });
 });
 
