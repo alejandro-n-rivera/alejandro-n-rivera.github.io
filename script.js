@@ -37,6 +37,7 @@ function clearSlots() {
     const slots = document.querySelectorAll('.slot');
     slots.forEach(slot => slot.textContent = '');
     currentGuess = [];
+    document.getElementById('submitGuess').disabled = true;  // Disable button when clearing slots
 }
 
 function checkGuess() {
@@ -139,6 +140,7 @@ document.getElementById('submitGuess').addEventListener('click', () => {
     if (result.correctPosition === 3) {
         document.getElementById('gameOver').classList.remove('hidden');
         document.getElementById('gameOver').querySelector('h2').innerHTML = '<div class="game-over-text">You Won! 🎉</div>';
+        document.getElementById('submitGuess').disabled = true;  // Disable button on win
     } else if (remainingGuesses === 0) {
         document.getElementById('gameOver').classList.remove('hidden');
         const gameOverMessage = document.getElementById('gameOver').querySelector('h2');
@@ -150,8 +152,9 @@ document.getElementById('submitGuess').addEventListener('click', () => {
         correctCombo.style.fontSize = '2rem';
         correctCombo.textContent = secretCombination.map(color => emojiMap[color]).join(' ');
         gameOverMessage.appendChild(correctCombo);
+        document.getElementById('submitGuess').disabled = true;  // Disable button on loss
     } else {
-        clearSlots();
+        clearSlots();  // This will now also disable the button
     }
 });
 
