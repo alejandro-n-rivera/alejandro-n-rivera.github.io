@@ -97,9 +97,22 @@ header h1 {
     -webkit-user-select: none;  /* Safari */
     -moz-user-select: none;     /* Firefox */
     -ms-user-select: none;      /* IE/Edge */
+    line-height: 1;             /* Ensure consistent line height */
+    padding: 0;                 /* Remove any padding */
+    position: relative;         /* For absolute positioning of content */
 }
 
-.slot:hover:not(:empty) {
+.slot[data-emoji]::before {
+    content: attr(data-emoji);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.slot:hover[data-emoji] {
     transform: scale(0.9);
 }
 

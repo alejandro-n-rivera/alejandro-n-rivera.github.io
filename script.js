@@ -35,7 +35,7 @@ function initGame() {
 
 function clearSlots() {
     const slots = document.querySelectorAll('.slot');
-    slots.forEach(slot => slot.textContent = '');
+    slots.forEach(slot => slot.removeAttribute('data-emoji'));
     currentGuess = [];
     document.getElementById('submitGuess').disabled = true;  // Disable button when clearing slots
 }
@@ -121,7 +121,7 @@ document.querySelectorAll('.color-btn').forEach(button => {
         } else if (currentGuess.length < 3) {
             // Add new color only if there's room
             currentGuess.push(color);
-            document.querySelectorAll('.slot')[currentGuess.length - 1].textContent = emojiMap[color];
+            document.querySelectorAll('.slot')[currentGuess.length - 1].setAttribute('data-emoji', emojiMap[color]);
         }
         document.getElementById('submitGuess').disabled = currentGuess.length !== 3;
     });
@@ -161,7 +161,7 @@ document.getElementById('submitGuess').addEventListener('click', () => {
 // Add click handlers for slots
 document.querySelectorAll('.slot').forEach((slot, index) => {
     slot.addEventListener('click', () => {
-        if (slot.textContent) {  // Only act if the slot has a color
+        if (slot.hasAttribute('data-emoji')) {  // Only act if the slot has a color
             currentGuess.splice(index, 1);  // Remove the color at this position
             updateSlotDisplay();
             document.getElementById('submitGuess').disabled = true;
@@ -172,9 +172,11 @@ document.querySelectorAll('.slot').forEach((slot, index) => {
 // Helper function to update slot display after removing colors
 function updateSlotDisplay() {
     const slots = document.querySelectorAll('.slot');
-    slots.forEach(slot => slot.textContent = '');  // Clear all slots
+    slots.forEach(slot => {
+        slot.removeAttribute('data-emoji');
+    });  // Clear all slots
     currentGuess.forEach((color, i) => {
-        slots[i].textContent = emojiMap[color];  // Refill with current colors
+        slots[i].setAttribute('data-emoji', emojiMap[color]);  // Set emoji using data attribute
     });
 }
 
